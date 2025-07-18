@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NexaAI Signup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+  <div class="bg-gray-800 p-8 rounded-xl shadow-md w-full max-w-md">
+    <h1 class="text-2xl font-bold mb-4 text-center">🔥 NexaAI Sign Up</h1>
+
+    <input type="email" id="email" placeholder="Email" class="w-full p-3 mb-3 rounded bg-gray-700 border-none focus:outline-none" />
+    <input type="password" id="password" placeholder="Password" class="w-full p-3 mb-4 rounded bg-gray-700 border-none focus:outline-none" />
+    
+    <button onclick="signUp()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded">Sign Up</button>
+
+    <p id="msg" class="mt-4 text-center text-sm"></p>
+  </div>
+
+  <script>
+    // 🔐 Firebase Config from NexaAI Console
+    const firebaseConfig = {
+      apiKey: "AIzaSyAmymP8ix1F1JQM6Rvom1i3TLxQuy8_Nv8",
+      authDomain: "nexaai-24066.firebaseapp.com",
+      projectId: "nexaai-24066",
+      storageBucket: "nexaai-24066.appspot.com", // ← fixed typo (.app to .appspot.com)
+      messagingSenderId: "396496209661",
+      appId: "1:396496209661:web:912128a45017e93a8b2094",
+      measurementId: "G-2HHC4B02DS"
+    };
+
+    // 🔧 Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // ✅ Sign-Up Function
+    function signUp() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const msg = document.getElementById("msg");
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+          msg.innerText = "✅ Account created! Saving data...";
+
+          return db.collection("users").doc(user.uid).set({
+            email: user.email,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        })
+        .then(() => {
+          msg.innerText = "🎉 Signup complete! Redirecting...";
+          setTimeout(() => {
+            window.location.href = "https://saad-pie.github.io/SteveAI"; // or your dashboard
+          }, 2000);
+        })
+        .catch(error => {
+          msg.innerText = `❌ ${error.message}`;
+        });
+    }
+  </script>
+</body>
+</html>
