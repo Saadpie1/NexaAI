@@ -1,0 +1,23 @@
+body {
+  font-family: 'Patrick Hand', cursive;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bubble {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #2d3748;
+  color: #fff;
+  max-width: 80%;
+}
+
+.bubble.user {
+  align-self: flex-end;
+  background-color: #48bb78;
+  color: black;
+}
+
+.bubble.ai {
+  align-self: flex-start;
+  background-color: #4a5568;
+}
