@@ -3,27 +3,62 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NexaAI – Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#3B82F6',
+              dark: '#111827',
+              accent: '#60A5FA'
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen text-white">
+  <body class="bg-gradient-to-br from-dark via-gray-800 to-dark text-white min-h-screen flex flex-col">
+    <!-- Header -->
     <header class="p-6 flex justify-between items-center border-b border-gray-700">
-      <h1 class="text-2xl font-bold text-blue-400">🤖 NexaAI</h1>
+      <h1 class="text-2xl font-bold text-accent">🤖 NexaAI</h1>
       <nav class="space-x-4">
         <a href="login.html" class="text-gray-300 hover:text-white">Login</a>
-        <a href="signup.html" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white font-semibold transition">Get Started</a>
+        <a href="signup.html" class="bg-primary hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold transition">Get Started</a>
       </nav>
     </header>
 
-    <main class="flex flex-col items-center justify-center text-center px-4 py-24">
-      <h2 class="text-4xl font-extrabold mb-6 leading-tight">Welcome to <span class="text-blue-400">NexaAI</span></h2>
-      <p class="text-lg text-gray-300 mb-8 max-w-xl">Your personal AI assistant that helps you build bots, generate images & videos, and automate everything. All from one place.</p>
-      <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-lg font-semibold transition">Start Now</a>
+    <!-- Main -->
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 py-24">
+      <h2 class="text-5xl font-extrabold mb-4 leading-tight">Welcome to <span class="text-primary">NexaAI</span></h2>
+      <p class="text-lg text-gray-300 mb-8 max-w-xl">
+        Build AI bots, generate videos, images, and automate tasks — all in one unified space.
+      </p>
+      <a href="signup.html" class="bg-primary hover:bg-blue-700 px-6 py-3 rounded-lg text-lg font-semibold transition shadow-lg">
+        🚀 Start Now
+      </a>
     </main>
 
+    <!-- Footer -->
     <footer class="text-center text-sm text-gray-400 py-6 border-t border-gray-700">
-      &copy; 2025 NexaAI. Built with ❤️
+      &copy; 2025 NexaAI. Built with ❤️ by Saad
     </footer>
+
+    <!-- Embedded JavaScript -->
+    <script>
+      console.log("🔥 NexaAI Homepage loaded");
+
+      // Example feature: Fade-in main content
+      document.addEventListener("DOMContentLoaded", () => {
+        const main = document.querySelector("main");
+        main.style.opacity = 0;
+        main.style.transition = "opacity 1s ease-in-out";
+        setTimeout(() => {
+          main.style.opacity = 1;
+        }, 100);
+      });
+    </script>
   </body>
 </html>

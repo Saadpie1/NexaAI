@@ -1,21 +1,58 @@
-// Signup handler
-document.addEventListener("DOMContentLoaded", () => {
-  const signupForm = document.getElementById("signup-form");
-  if (signupForm) {
-    signupForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("signup-email").value;
-      const password = document.getElementById("signup-password").value;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup - NexaAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+  <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Signup to NexaAI</h2>
+    <form id="signup-form" class="space-y-4">
+      <input type="email" id="signup-email" placeholder="Email" required class="w-full p-2 rounded bg-gray-700 text-white">
+      <input type="password" id="signup-password" placeholder="Password" required class="w-full p-2 rounded bg-gray-700 text-white">
+      <p id="signup-error" class="text-red-500 text-sm"></p>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 w-full p-2 rounded">Signup</button>
+    </form>
+  </div>
+
+  <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAmymP8ix1F1JQM6Rvom1i3TLxQuy8_Nv8",
+      authDomain: "nexaai-24066.firebaseapp.com",
+      projectId: "nexaai-24066",
+      storageBucket: "nexaai-24066.appspot.com",
+      messagingSenderId: "396496209661",
+      appId: "1:396496209661:web:912128a45017e93a8b2094"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const signupForm = document.getElementById("signup-form");
       const errorText = document.getElementById("signup-error");
 
-      try {
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
-        alert("Signup successful! Redirecting...");
-        window.location.href = "index.html"; // or dashboard.html
-      } catch (error) {
-        console.error(error);
-        errorText.textContent = error.message;
-      }
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("signup-email").value;
+        const password = document.getElementById("signup-password").value;
+
+        try {
+          await auth.createUserWithEmailAndPassword(email, password);
+          alert("Signup successful! Redirecting...");
+          window.location.href = "index.html";
+        } catch (error) {
+          console.error(error);
+          errorText.textContent = error.message;
+        }
+      });
     });
-  }
-});
+  </script>
+</body>
+</html>
