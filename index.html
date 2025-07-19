@@ -1,56 +1,49 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NexaAI</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#f97316',
-            dark: '#1a1a1a',
-            surface: '#2a2a2a',
-          },
-          fontFamily: {
-            hand: ['"Patrick Hand"', 'cursive'],
-          },
-        },
-      },
-    };
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css" />
-</head>
-<body class="bg-dark text-white min-h-screen flex flex-col font-hand">
-  <div class="flex justify-between items-center px-4 py-2 border-b border-gray-700">
-    <h1 class="text-3xl font-bold">NexaAI</h1>
-    <div class="flex gap-4 items-center">
-      <span id="status" class="text-sm text-gray-400">🔌 Offline</span>
-      <button id="toggleTheme" class="text-sm bg-gray-700 px-3 py-1 rounded hover:bg-gray-600">Toggle Theme</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Steve AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-black text-white">
+    <div class="flex justify-between p-4 bg-gray-800">
+      <h1 class="text-xl font-bold">Steve AI</h1>
+      <div>
+        <span id="status" class="mr-4">🔌 Offline</span>
+        <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Logout</button>
+      </div>
     </div>
-  </div>
 
-  <div id="chatBox" class="flex-1 overflow-y-auto px-4 py-6 space-y-4 flex flex-col"></div>
-
-  <div class="w-full max-w-3xl mx-auto px-4 py-3">
-    <div class="flex items-end gap-2">
-      <textarea id="inputBox" rows="1" placeholder="Ask anything..."
-        class="w-full resize-none p-3 rounded-lg bg-[#1f1f1f] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"></textarea>
-      <button id="sendBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">Send</button>
+    <div class="p-4">
+      <div id="chatBox" class="space-y-2 h-96 overflow-y-auto p-2 border border-gray-700 mb-4"></div>
+      <div class="flex space-x-2">
+        <input id="inputBox" type="text" class="flex-1 p-2 text-black" placeholder="Type your message..." />
+        <button id="sendBtn" class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">Send</button>
+        <button id="toggleTheme" class="bg-gray-600 px-4 py-2 rounded hover:bg-gray-700">🌓</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Firebase Core -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBJnTX0R4UZUBp5MQYYO1QO_7emZpFDq8o",
+        authDomain: "nexaai-24066.firebaseapp.com",
+        projectId: "nexaai-24066",
+        storageBucket: "nexaai-24066.appspot.com",
+        messagingSenderId: "1004512149869",
+        appId: "1:1004512149869:web:fbff8e6b0223f1519c42d1"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
 
-  <!-- Firebase Config -->
-  <script src="firebase/firebase-config.js"></script>
-  <script src="assets/script.js"></script>
-</body>
+      function logout() {
+        auth.signOut().then(() => window.location.href = "signup.html");
+      }
+    </script>
+    <script src="assets/script.js"></script>
+  </body>
 </html>
