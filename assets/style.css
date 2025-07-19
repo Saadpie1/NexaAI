@@ -1,20 +1,31 @@
-/* style.css */
+/* assets/style.css */
 body {
   font-family: 'Patrick Hand', cursive;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .bubble {
   animation: slide-up 0.3s ease-in-out;
   word-wrap: break-word;
+  max-width: 75%;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #333;
+  color: #fff;
+}
+
+.bubble.user {
+  align-self: flex-end;
+  background-color: #f97316;
+  color: black;
+}
+
+.bubble.ai {
+  align-self: flex-start;
+  background-color: #444;
 }
 
 @keyframes slide-up {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
