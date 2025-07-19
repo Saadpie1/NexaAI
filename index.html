@@ -1,49 +1,56 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NexaAI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#f97316',
-              dark: '#1a1a1a',
-              surface: '#2a2a2a',
-            },
-            fontFamily: {
-              hand: ['"Patrick Hand"', 'cursive'],
-            },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexaAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#f97316',
+            dark: '#1a1a1a',
+            surface: '#2a2a2a',
+          },
+          fontFamily: {
+            hand: ['"Patrick Hand"', 'cursive'],
           },
         },
-      };
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="bg-dark text-white min-h-screen flex flex-col font-hand">
-    <div class="flex justify-between items-center px-4 py-2 border-b border-gray-700">
-      <h1 class="text-3xl font-bold">NexaAI</h1>
-      <div class="flex gap-4 items-center">
-        <span id="status" class="text-sm text-gray-400">🔌 Offline</span>
-        <button id="toggleTheme" class="text-sm bg-gray-700 px-3 py-1 rounded hover:bg-gray-600">Toggle Theme</button>
-      </div>
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="bg-dark text-white min-h-screen flex flex-col font-hand">
+  <div class="flex justify-between items-center px-4 py-2 border-b border-gray-700">
+    <h1 class="text-3xl font-bold">NexaAI</h1>
+    <div class="flex gap-4 items-center">
+      <span id="status" class="text-sm text-gray-400">🔌 Offline</span>
+      <button id="toggleTheme" class="text-sm bg-gray-700 px-3 py-1 rounded hover:bg-gray-600">Toggle Theme</button>
     </div>
+  </div>
 
-    <div id="chatBox" class="flex-1 overflow-y-auto px-4 py-6 space-y-4 flex flex-col"></div>
+  <div id="chatBox" class="flex-1 overflow-y-auto px-4 py-6 space-y-4 flex flex-col"></div>
 
-    <div class="w-full max-w-3xl mx-auto px-4 py-3">
-      <div class="flex items-end gap-2">
-        <textarea id="inputBox" rows="1" placeholder="Ask anything..."
-          class="w-full resize-none p-3 rounded-lg bg-[#1f1f1f] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"></textarea>
-        <button id="sendBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">Send</button>
-      </div>
+  <div class="w-full max-w-3xl mx-auto px-4 py-3">
+    <div class="flex items-end gap-2">
+      <textarea id="inputBox" rows="1" placeholder="Ask anything..."
+        class="w-full resize-none p-3 rounded-lg bg-[#1f1f1f] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"></textarea>
+      <button id="sendBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">Send</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- Firebase Core -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <!-- Firebase Config -->
+  <script src="firebase/firebase-config.js"></script>
+  <script src="assets/script.js"></script>
+</body>
 </html>
