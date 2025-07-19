@@ -1,32 +1,29 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Psychological Chat Assistant</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-  <script type="module" src="firebase/firebase-config.js"></script>
-</head>
-<body class="bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 text-white min-h-screen flex flex-col font-[Patrick Hand]">
-  <header class="p-4 flex justify-between items-center bg-black/50 shadow-md">
-    <h1 class="text-2xl font-bold">🧠 PsychChat</h1>
-    <div>
-      <span id="status" class="mr-4">🔌 Offline</span>
-      <button onclick="logout()" class="bg-red-500 px-4 py-1 rounded">Logout</button>
-    </div>
-  </header>
-  <main class="p-4 flex-1 overflow-y-auto">
-    <div id="chatBox" class="space-y-3 h-[500px] overflow-y-auto p-4 bg-white/10 rounded shadow-inner"></div>
-    <div class="flex mt-4 space-x-2">
-      <input id="inputBox" type="text" class="flex-1 p-2 rounded text-black" placeholder="Share your thoughts..." />
-      <select id="aiSelect" class="bg-gray-700 text-white p-2 rounded">
-        <option value="steve">SteveAI</option>
-        <option value="chatgpt">ChatGPT</option>
-      </select>
-      <button id="sendBtn" class="bg-green-500 px-4 py-2 rounded hover:bg-green-600">Send</button>
-    </div>
-  </main>
-  <script type="module" src="assets/script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>NexaAI – Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen text-white">
+    <header class="p-6 flex justify-between items-center border-b border-gray-700">
+      <h1 class="text-2xl font-bold text-blue-400">🤖 NexaAI</h1>
+      <nav class="space-x-4">
+        <a href="login.html" class="text-gray-300 hover:text-white">Login</a>
+        <a href="signup.html" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white font-semibold transition">Get Started</a>
+      </nav>
+    </header>
+
+    <main class="flex flex-col items-center justify-center text-center px-4 py-24">
+      <h2 class="text-4xl font-extrabold mb-6 leading-tight">Welcome to <span class="text-blue-400">NexaAI</span></h2>
+      <p class="text-lg text-gray-300 mb-8 max-w-xl">Your personal AI assistant that helps you build bots, generate images & videos, and automate everything. All from one place.</p>
+      <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-lg font-semibold transition">Start Now</a>
+    </main>
+
+    <footer class="text-center text-sm text-gray-400 py-6 border-t border-gray-700">
+      &copy; 2025 NexaAI. Built with ❤️
+    </footer>
+  </body>
 </html>
