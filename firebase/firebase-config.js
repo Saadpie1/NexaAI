@@ -1,4 +1,4 @@
-// firebase/firebase-config.js
+// Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAmymP8ix1F1JQM6Rvom1i3TLxQuy8_Nv8",
   authDomain: "nexaai-24066.firebaseapp.com",
@@ -12,4 +12,3 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-
