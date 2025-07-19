@@ -1,0 +1,20 @@
+/* style.css */
+body {
+  font-family: 'Patrick Hand', cursive;
+}
+
+.bubble {
+  animation: slide-up 0.3s ease-in-out;
+  word-wrap: break-word;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
