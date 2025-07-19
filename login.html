@@ -5,49 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - NexaAI</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAmymP8ix1F1JQM6Rvom1i3TLxQuy8_Nv8",
+      authDomain: "nexaai-24066.firebaseapp.com",
+      projectId: "nexaai-24066",
+      storageBucket: "nexaai-24066.appspot.com",
+      messagingSenderId: "396496209661",
+      appId: "1:396496209661:web:912128a45017e93a8b2094"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Login to NexaAI</h2>
-    <form id="loginForm" class="space-y-4">
-      <div>
-        <label class="block text-sm font-medium">Email</label>
-        <input type="email" id="email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Password</label>
-        <input type="password" id="password" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
-      </div>
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Login</button>
+<body class="bg-gray-950 text-white flex items-center justify-center h-screen">
+  <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-400">Login to NexaAI</h2>
+    <form id="login-form" class="space-y-4">
+      <input type="email" id="login-email" placeholder="Email" required class="w-full px-4 py-2 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500" />
+      <input type="password" id="login-password" placeholder="Password" required class="w-full px-4 py-2 bg-gray-700 text-white rounded focus:ring-2 focus:ring-blue-500" />
+      <p id="login-error" class="text-red-500 text-sm"></p>
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 w-full py-2 rounded text-white font-semibold">Login</button>
     </form>
-    <p class="mt-4 text-sm text-center">
-      Don’t have an account?
-      <a href="signup.html" class="text-blue-600 hover:underline">Sign up</a>
+    <p class="mt-4 text-sm text-gray-400 text-center">
+      Don't have an account?
+      <a href="signup.html" class="text-blue-400 hover:underline">Sign up</a>
     </p>
-    <p id="error" class="text-red-500 text-sm mt-2 text-center hidden"></p>
   </div>
 
-  <script type="module">
-    import { initializeApp } from './firebase/firebase-config.js';
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+  <script>
+    const auth = firebase.auth();
 
-    const auth = getAuth();
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginForm = document.getElementById("login-form");
+      const errorText = document.getElementById("login-error");
 
-    document.getElementById("loginForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
 
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          alert("Login successful!");
-          window.location.href = "index.html";
-        })
-        .catch((error) => {
-          document.getElementById("error").textContent = "❌ " + error.message;
-          document.getElementById("error").classList.remove("hidden");
-        });
+        try {
+          await auth.signInWithEmailAndPassword(email, password);
+          alert("Login successful! Redirecting...");
+          window.location.href = "dashboard.html";
+        } catch (error) {
+          console.error(error);
+          errorText.textContent = error.message;
+        }
+      });
     });
   </script>
 </body>

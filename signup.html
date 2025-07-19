@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Signup - NexaAI</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
-</head>
-<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
-  <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-6 text-center">Signup to NexaAI</h2>
-    <form id="signup-form" class="space-y-4">
-      <input type="email" id="signup-email" placeholder="Email" required class="w-full p-2 rounded bg-gray-700 text-white">
-      <input type="password" id="signup-password" placeholder="Password" required class="w-full p-2 rounded bg-gray-700 text-white">
-      <p id="signup-error" class="text-red-500 text-sm"></p>
-      <button type="submit" class="bg-blue-500 hover:bg-blue-600 w-full p-2 rounded">Signup</button>
-    </form>
-  </div>
-
   <script>
     // Firebase config
     const firebaseConfig = {
@@ -31,7 +19,25 @@
     };
 
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</head>
+<body class="bg-gray-950 text-white flex items-center justify-center h-screen">
+  <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-400">Create a NexaAI Account</h2>
+    <form id="signup-form" class="space-y-4">
+      <input type="email" id="signup-email" placeholder="Email" required class="w-full px-4 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <input type="password" id="signup-password" placeholder="Password" required class="w-full px-4 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <p id="signup-error" class="text-red-500 text-sm"></p>
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 w-full py-2 rounded text-white font-semibold">Sign Up</button>
+    </form>
+    <p class="mt-4 text-sm text-gray-400 text-center">
+      Already have an account?
+      <a href="index.html" class="text-blue-400 hover:underline">Login</a>
+    </p>
+  </div>
+
+  <script>
     const auth = firebase.auth();
 
     document.addEventListener("DOMContentLoaded", () => {

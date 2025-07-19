@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat - NexaAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white min-h-screen p-6">
+  <div class="max-w-2xl mx-auto">
+    <h1 id="chat-header" class="text-3xl font-bold text-center mb-4 text-blue-400">Chat</h1>
+    <div id="chat-box" class="bg-gray-800 p-4 rounded-lg h-96 overflow-y-auto mb-4"></div>
+    <form id="chat-form" class="flex gap-2">
+      <input type="text" id="chat-input" placeholder="Type your message..." required class="flex-1 px-4 py-2 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const chatInput = document.getElementById("chat-input");
+    const chatForm = document.getElementById("chat-form");
+    const chatHeader = document.getElementById("chat-header");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const model = urlParams.get("model") || "steveai";
+
+    chatHeader.textContent = model === "chatgpt" ? "💬 ChatGPT" : "🤖 SteveAI";
+
+    chatForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userMsg = chatInput.value.trim();
+      if (!userMsg) return;
+
+      appendMessage("You", userMsg);
+      chatInput.value = "";
+
+      try {
+        const response = await fetch(
+          model === "chatgpt"
+            ? "https://api.steveai/chatgpt"
+            : "https://api.steveai/steveai",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMsg }),
+          }
+        );
+        const data = await response.json();
+        appendMessage(model === "chatgpt" ? "ChatGPT" : "SteveAI", data.reply || "No reply");
+      } catch (err) {
+        console.error(err);
+        appendMessage("System", "Error communicating with the bot.");
+      }
+    });
+
+    function appendMessage(sender, message) {
+      const msg = document.createElement("div");
+      msg.className = "mb-2";
+      msg.innerHTML = `<strong class="text-blue-400">${sender}:</strong> ${message}`;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>

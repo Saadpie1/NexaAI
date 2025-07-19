@@ -1,64 +1,18 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NexaAI – Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#3B82F6',
-              dark: '#111827',
-              accent: '#60A5FA'
-            }
-          }
-        }
-      }
-    </script>
-  </head>
-  <body class="bg-gradient-to-br from-dark via-gray-800 to-dark text-white min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="p-6 flex justify-between items-center border-b border-gray-700">
-      <h1 class="text-2xl font-bold text-accent">🤖 NexaAI</h1>
-      <nav class="space-x-4">
-        <a href="login.html" class="text-gray-300 hover:text-white">Login</a>
-        <a href="signup.html" class="bg-primary hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold transition">Get Started</a>
-      </nav>
-    </header>
-
-    <!-- Main -->
-    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 py-24">
-      <h2 class="text-5xl font-extrabold mb-4 leading-tight">Welcome to <span class="text-primary">NexaAI</span></h2>
-      <p class="text-lg text-gray-300 mb-8 max-w-xl">
-        Build AI bots, generate videos, images, and automate tasks — all in one unified space.
-      </p>
-      <a href="signup.html" class="bg-primary hover:bg-blue-700 px-6 py-3 rounded-lg text-lg font-semibold transition shadow-lg">
-        🚀 Start Now
-      </a>
-    </main>
-
-    <!-- Footer -->
-    <footer class="text-center text-sm text-gray-400 py-6 border-t border-gray-700">
-      &copy; 2025 NexaAI. Built with ❤️ by Saad
-    </footer>
-
-    <!-- Embedded JavaScript -->
-    <script>
-      console.log("🔥 NexaAI Homepage loaded");
-
-      // Example feature: Fade-in main content
-      document.addEventListener("DOMContentLoaded", () => {
-        const main = document.querySelector("main");
-        main.style.opacity = 0;
-        main.style.transition = "opacity 1s ease-in-out";
-        setTimeout(() => {
-          main.style.opacity = 1;
-        }, 100);
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NexaAI Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white min-h-screen p-6">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-8 text-blue-400">Welcome to NexaAI Dashboard</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <a href="chat.html?model=steveai" class="bg-gray-800 hover:bg-blue-800 p-6 rounded-lg shadow text-center text-xl font-semibold">🤖 Use SteveAI</a>
+      <a href="chat.html?model=chatgpt" class="bg-gray-800 hover:bg-green-800 p-6 rounded-lg shadow text-center text-xl font-semibold">💬 Use ChatGPT</a>
+    </div>
+  </div>
+</body>
 </html>
